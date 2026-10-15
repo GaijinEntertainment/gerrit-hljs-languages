@@ -17,7 +17,7 @@
 		"@gaijin/highlightjs-dshl": "^1.2.0",
 		"@gaijin/highlightjs-jam": "^1.2.0",
 		"@gaijin/highlightjs-quirrel": "^1.2.0",
-		"@types/node": "^24.19.2",
+		"@types/node": "^26.6.5",
 		"@ver0/oxlint-config": "^2.0.2",
 		"highlight.js": "^11.12.0",
 		"playwright": "^1.64.1",
