@@ -1,6 +1,6 @@
 {
 	"name": "gerrit-hljs-languages",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"private": true,
 	"description": "Gerrit plugin that adds highlight.js languages to the syntax highlighting of the diff view",
 	"license": "MIT",
