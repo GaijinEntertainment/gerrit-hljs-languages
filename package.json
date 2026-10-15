@@ -12,11 +12,11 @@
 		"build": "vp pack"
 	},
 	"devDependencies": {
-		"@gaijin/highlightjs-blk": "^1.1.0",
-		"@gaijin/highlightjs-daslang": "^1.1.0",
-		"@gaijin/highlightjs-dshl": "^1.1.0",
-		"@gaijin/highlightjs-jam": "^1.1.0",
-		"@gaijin/highlightjs-quirrel": "^1.1.0",
+		"@gaijin/highlightjs-blk": "^1.2.0",
+		"@gaijin/highlightjs-daslang": "^1.2.0",
+		"@gaijin/highlightjs-dshl": "^1.2.0",
+		"@gaijin/highlightjs-jam": "^1.2.0",
+		"@gaijin/highlightjs-quirrel": "^1.2.0",
 		"@types/node": "^24.19.2",
 		"@ver0/oxlint-config": "^2.0.2",
 		"highlight.js": "^11.12.0",
