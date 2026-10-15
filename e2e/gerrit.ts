@@ -121,24 +121,16 @@ export default async function setup(project: TestProject): Promise<() => void> {
 	const plugin = path.join(ROOT, 'dist', 'hljs-languages.js');
 	const container = execFileSync(
 		'docker',
-		[
-			'run',
-			'--detach',
-			'--rm',
-			'--publish',
-			`127.0.0.1:${port}:8080`,
-			'--env',
-			`CANONICAL_WEB_URL=${origin}/`,
-			'--volume',
-			`${plugin}:/var/gerrit/plugins/hljs-languages.js:ro`,
-			IMAGE,
-		],
+		['create', '--rm', '--publish', `127.0.0.1:${port}:8080`, '--env', `CANONICAL_WEB_URL=${origin}/`, IMAGE],
 		{encoding: 'utf8'},
 	).trim();
 	const teardown = (): void => {
 		execFileSync('docker', ['rm', '--force', container], {stdio: 'ignore'});
 	};
 	try {
+		// constraint: Docker Desktop can mount no file at all for a single file that `vp pack` has just replaced
+		execFileSync('docker', ['cp', plugin, `${container}:/var/gerrit/plugins/hljs-languages.js`]);
+		execFileSync('docker', ['start', container], {stdio: 'ignore'});
 		await waitForGerrit(origin);
 		const files = readdirSync(SAMPLES).toSorted();
 		const patchSetPath = await addSamples(origin, files);
