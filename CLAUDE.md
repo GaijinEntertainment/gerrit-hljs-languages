@@ -36,6 +36,16 @@ The repository is public.
   (`actions/checkout@<sha> # v7.0.1`), which Dependabot reads to update both. A checkout sets
   `persist-credentials: false`.
 
+## Releasing
+
+- The release procedure is the `Releasing` section of `README.md`. Change it in the same commit as
+  `.github/workflows/release.yml`.
+- The `restrict-release-tag-creation` ruleset lets only repository admins create a `v*` tag. The
+  `protect-release-tags` ruleset forbids moving or deleting one and has no bypass, so it stays a separate ruleset: a
+  bypass covers every rule of its ruleset.
+- A job that can mint an OIDC token (`id-token: write`) runs only GitHub's own actions and the `gh` CLI. The plugin is
+  built in a separate job and reaches the release job as an artifact.
+
 ## Public repository
 
 - Files and commit messages hold no internal context: no internal hosts, no links to internal Gerrit changes or tracker

@@ -1,0 +1,92 @@
+name: Release the plugin
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build the plugin
+    runs-on: ubuntu-24.04
+    outputs:
+      version: ${{steps.tag.outputs.version}}
+      prerelease: ${{steps.tag.outputs.prerelease}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Vite+
+        uses: voidzero-dev/setup-vp@68f39c78aaf39be468cabd2afb09c162574c84af # v1.21.2
+        with:
+          node-version: '24'
+          run-install: false
+      - name: Install dependencies
+        run: vp install --frozen-lockfile
+      - name: Read the version from the tag
+        id: tag
+        if: github.event_name == 'push'
+        run: |
+          version=${GITHUB_REF_NAME#v}
+          manifest_version=$(jq -r .version package.json)
+          if [[ ${manifest_version} != "${version}" ]]; then
+            echo "::error file=package.json::tag ${GITHUB_REF_NAME} does not match version ${manifest_version}"
+            exit 1
+          fi
+          prerelease=false
+          if [[ ${version} == *-* ]]; then
+            prerelease=true
+          fi
+          {
+            echo "version=${version}"
+            echo "prerelease=${prerelease}"
+          } >> "${GITHUB_OUTPUT}"
+      - name: Run the unit tests
+        run: vp test run
+      - name: Build the plugin
+        run: vp pack
+      - name: Upload the plugin
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: plugin
+          path: dist/hljs-languages.js
+          retention-days: 2
+
+  github-release:
+    name: Create the GitHub release
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - name: Download the plugin
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: plugin
+          path: dist
+      - name: Attest the plugin
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: dist/hljs-languages.js
+      - name: Create the release
+        run: |
+          flags=(--repo "${GITHUB_REPOSITORY}" --title "${VERSION}" --generate-notes)
+          if [[ ${PRERELEASE} == true ]]; then
+            flags+=(--prerelease)
+          fi
+          gh release create "${GITHUB_REF_NAME}" dist/hljs-languages.js "${flags[@]}"
+        env:
+          GH_TOKEN: ${{github.token}}
+          VERSION: ${{needs.build.outputs.version}}
+          PRERELEASE: ${{needs.build.outputs.prerelease}}

@@ -20,7 +20,15 @@ when it runs.
 
 The end-to-end tests run the plugin on Gerrit 3.14.2. Other versions of Gerrit are not tested.
 
-1. Build `dist/hljs-languages.js`, as [Development](#development) shows.
+1. Download `hljs-languages.js` from a [release](https://github.com/GaijinEntertainment/gerrit-hljs-languages/releases),
+   and verify its build provenance:
+
+   ```sh
+   gh attestation verify hljs-languages.js --repo GaijinEntertainment/gerrit-hljs-languages
+   ```
+
+   Or build `dist/hljs-languages.js`, as [Development](#development) shows.
+
 2. Copy `hljs-languages.js` into the `plugins` directory of the Gerrit site. Gerrit loads the plugin, named
    `hljs-languages`, at its next scan of the directory (`plugins.checkFrequency`, 1 minute by default) or when it
    starts.
@@ -76,6 +84,31 @@ vp test run --config e2e/vite.config.ts
 
 To test a different version of Gerrit, set `GERRIT_VERSION` to a tag of the `gerritcodereview/gerrit` image, such as
 `GERRIT_VERSION=3.14.4`.
+
+## Releasing
+
+Only a repository admin can create a release tag.
+
+1. In a pull request, set `version` in `package.json`. Merge the pull request.
+2. Tag the merged commit with `vX.Y.Z`, and push the tag. For 1.2.0:
+
+   ```sh
+   git fetch origin
+   git tag v1.2.0 origin/main
+   git push origin v1.2.0
+   ```
+
+3. Watch the run that the tag starts: `gh run watch`.
+
+The tag starts the workflow `.github/workflows/release.yml`. The workflow makes sure that the tag agrees with `version`,
+tests and builds the plugin, and creates a GitHub release with the attested `hljs-languages.js`. A version with a
+prerelease part, such as `1.2.0-rc.0`, makes a prerelease.
+
+Nobody can move or delete a release tag. If a job fails for a reason outside the repository, run the failed jobs again.
+If the fix needs a commit, release the next version.
+
+To rehearse a release, start the workflow manually with `gh workflow run release.yml`. The run tests and builds the
+plugin, and releases nothing.
 
 ## License
 
