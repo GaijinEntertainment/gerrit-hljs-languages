@@ -37,48 +37,48 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gaijin/highlightjs-blk@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@gaijin/highlightjs-blk@npm:1.1.0"
+"@gaijin/highlightjs-blk@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@gaijin/highlightjs-blk@npm:1.2.0"
   peerDependencies:
     highlight.js: ^11.12.0
-  checksum: 10c0/48d8a162521b37f0d4ae7f824302fea1c38a69e93caae76d2b6c2e15854e833b6ef0fcf9a06663e341e903a9c8bfee91c29145901d93aa0461fa0675f6d9a485
+  checksum: 10c0/5950f2e6fc7630ef5f5a6649c489ec14c5a5a85fa03cdabc569f610899a488b7a5606c578c3c3c6e53468cd70bac0e2e91d9171fde52af0da8485c7856af0be6
   languageName: node
   linkType: hard
 
-"@gaijin/highlightjs-daslang@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@gaijin/highlightjs-daslang@npm:1.1.0"
+"@gaijin/highlightjs-daslang@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@gaijin/highlightjs-daslang@npm:1.2.0"
   peerDependencies:
     highlight.js: ^11.12.0
-  checksum: 10c0/750ca60d8c5f79383afc271826e1e2fa1dd143e9de44aac0108c8b20ba0c195bab0249ed1dea7f8624a6d31763ca93c34fb4b50408b666c406db49e1d6088cc0
+  checksum: 10c0/d72402f65cfe2c7a988e753527f95c733238ae320d7a2d469e68d97fcf256bb9a2af38871e1cab1c2a53c3a183577b9fe17d134d56e185e4d475d32b197e8b16
   languageName: node
   linkType: hard
 
-"@gaijin/highlightjs-dshl@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@gaijin/highlightjs-dshl@npm:1.1.0"
+"@gaijin/highlightjs-dshl@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@gaijin/highlightjs-dshl@npm:1.2.0"
   peerDependencies:
     highlight.js: ^11.12.0
-  checksum: 10c0/21b2bbac38e880001c48786bfd23a179ff7d2cc106a0a75f56705099178746f581728f6f7753d76a71554211fef5d30cb2cd380751479ddda47b0d2e8cad9547
+  checksum: 10c0/6b2f651575e66da29957e549e9694e0fe726ecb8422143411d92f8dcd0eee1267225598f3e3777b4232f95c099060cf39a65092d2d756e04d378b004176ce98a
   languageName: node
   linkType: hard
 
-"@gaijin/highlightjs-jam@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@gaijin/highlightjs-jam@npm:1.1.0"
+"@gaijin/highlightjs-jam@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@gaijin/highlightjs-jam@npm:1.2.0"
   peerDependencies:
     highlight.js: ^11.12.0
-  checksum: 10c0/e754743ecab0aa3daad429a2553e98faeca49d7d86aae683cec4ca407709ea5d79d9eef4613591fd92df8e5cffc981331532a16cfcd40935efec6f6d3e52234e
+  checksum: 10c0/fedcfff43ff9608e899d8c2ea4c2d170fb4d06221512282a27b91a9677aa21e52fb9ae5f58d9bf53e1932accaa004467f6871c9ac3f2f6c1438c902de5757a49
   languageName: node
   linkType: hard
 
-"@gaijin/highlightjs-quirrel@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@gaijin/highlightjs-quirrel@npm:1.1.0"
+"@gaijin/highlightjs-quirrel@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@gaijin/highlightjs-quirrel@npm:1.2.0"
   peerDependencies:
     highlight.js: ^11.12.0
-  checksum: 10c0/818c4bc7489bab5437c8e70e2070cacac270417486ca11105b0cde72f374d5ef14201a7abf8a529b2356accb0f8d51db4b25cc647b41e5792da635ae1d4c8a01
+  checksum: 10c0/c5fed86054a4526e7cae668b71c274b9f2174cacaca62b23f5d54512fdfaec5a7c2539c2631ddc4698da113dfa5e157d4b3c84c7eefae21c5c69b7f2e88a457f
   languageName: node
   linkType: hard
 
@@ -1087,11 +1087,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "gerrit-hljs-languages@workspace:."
   dependencies:
-    "@gaijin/highlightjs-blk": "npm:^1.1.0"
-    "@gaijin/highlightjs-daslang": "npm:^1.1.0"
-    "@gaijin/highlightjs-dshl": "npm:^1.1.0"
-    "@gaijin/highlightjs-jam": "npm:^1.1.0"
-    "@gaijin/highlightjs-quirrel": "npm:^1.1.0"
+    "@gaijin/highlightjs-blk": "npm:^1.2.0"
+    "@gaijin/highlightjs-daslang": "npm:^1.2.0"
+    "@gaijin/highlightjs-dshl": "npm:^1.2.0"
+    "@gaijin/highlightjs-jam": "npm:^1.2.0"
+    "@gaijin/highlightjs-quirrel": "npm:^1.2.0"
     "@types/node": "npm:^24.19.2"
     "@ver0/oxlint-config": "npm:^2.0.2"
     highlight.js: "npm:^11.12.0"
