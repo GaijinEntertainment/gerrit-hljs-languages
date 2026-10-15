@@ -1,0 +1,25 @@
+include "shader_global.dshl"
+
+texture frame_tex;
+int quality = 1;
+interval quality: low < 1, high;
+
+shader copy_frame
+{
+  z_write = false;
+  cull_mode = none;
+  (ps) {
+    frame_tex@smp2d = frame_tex;
+  }
+  hlsl(ps) {
+    float4 main_ps(float4 pos : SV_Position) : SV_Target
+    {
+    ##if quality == high
+      return tex2Dlod(frame_tex, float4(pos.xy, 0, 0));
+    ##else
+      return 0;
+    ##endif
+    }
+  }
+  compile("target_ps", "main_ps");
+}

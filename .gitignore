@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.vitest/
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Claude Code
+.claude/settings.local.json

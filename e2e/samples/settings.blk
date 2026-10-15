@@ -1,0 +1,12 @@
+include "#/common/settings.blk"
+
+graphics{
+  resolution:ip2=1920, 1080
+  vsync:b=yes
+  gamma:r=2.2
+  driver:t="auto"
+}
+
+debug{
+  logLevel:i=2
+}

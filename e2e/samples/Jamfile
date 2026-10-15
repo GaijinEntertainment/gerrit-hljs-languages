@@ -1,0 +1,11 @@
+Root ?= ../.. ;
+Location = prog/sample ;
+
+TargetType = exe ;
+Target = sample.exe ;
+
+Sources =
+  main.cpp
+;
+
+include $(Root)/prog/_jBuild/build.jam ;
