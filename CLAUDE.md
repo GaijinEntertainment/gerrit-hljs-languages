@@ -29,6 +29,12 @@ The repository is public.
 - Run `vp install`, then `vp check` (format, lint, and type check) and `vp test run`.
 - Run the end-to-end tests with `vp test run --config e2e/vite.config.ts`. They need Docker and the Chromium of
   Playwright (`vp exec playwright install chromium`).
+- A change reaches `main` through a pull request, merged by rebase or squash after the `ci-ok` job of
+  `.github/workflows/ci.yml` passes; the `protect-main` ruleset rejects a direct push. Add each new CI job to the
+  `needs` list of `ci-ok`.
+- A workflow pins each action to the commit SHA of a release and names the release in a comment
+  (`actions/checkout@<sha> # v7.0.1`), which Dependabot reads to update both. A checkout sets
+  `persist-credentials: false`.
 
 ## Public repository
 
